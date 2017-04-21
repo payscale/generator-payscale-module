@@ -1,24 +1,24 @@
 {
-  "name": "",
+  "name": "<%- name %>",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "<%- description %>",
+  "main": "src/index.js",
   "scripts": {
-    "test": "mocha -R min -r babel-register -r ignore-styles --reporter progress ./testutils/dom.js components/*/tests/*.js",
-    "lint": "eslint --config .eslintrc --format table components",
-    "lint-fix": "eslint --fix --config .eslintrc --format table components",
-    "teamcity-test": "mocha -R min -r babel-register -r ignore-styles --reporter mocha-teamcity-reporter ./testutils/dom.js components/*/tests/*.js",
-    "teamcity-lint": "eslint --config .eslintrc --format ./node_modules/eslint-teamcity/index.js components",
-    "compile": "babel src/* -d lib/ --ignore '/tests/' && webpack",
+    "test": "mocha -R min -r babel-register -r ignore-styles --reporter progress ./testutils/dom.js src/tests/*.js",
+    "lint": "eslint --config .eslintrc --format table src",
+    "lint-fix": "eslint --fix --config .eslintrc --format table src",
+    "teamcity-test": "mocha -R min -r babel-register --reporter mocha-teamcity-reporter ./testutils/dom.js src/tests/*.js",
+    "teamcity-lint": "eslint --config .eslintrc --format ./node_modules/eslint-teamcity/index.js src",
+    "compile": "babel src -d lib/ --ignore '/tests/' && webpack",
     "prepublish": "npm run teamcity-lint && npm run teamcity-test && npm run compile"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "<%- repo %>"
   },
   "keywords": [
   ],
-  "author": "",
+  "author": "<%- author %>",
   "license": "Apache-2.0",
   "devDependencies": {
     "babel-cli": "6.24.0",
@@ -26,6 +26,8 @@
     "babel-loader": "6.2.10",
     "babel-plugin-add-module-exports": "0.2.1",
     "babel-preset-es2015": "6.18.0",
+    <%- reactDevDependencies %>,
+    <%- testingDependencies %>,
     "babel-preset-stage-0": "6.16.0",
     "babel-preset-stage-1": "6.16.0",
     "babel-register": "6.18.0",
@@ -36,10 +38,9 @@
     "eslint-teamcity": "1.3.1",
     "extract-text-webpack-plugin": "2.1.0",
     "jsdom": "9.9.1",
-    "mocha": "2.5.3",
-    "mocha-teamcity-reporter": "1.1.1",
     "webpack": "2.2.0"
-  },
+    },
   "dependencies": {
+    <%- reactDependencies %>
   }
 }
