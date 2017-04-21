@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "PayScale",
+      "authorEmail": "npm@payscale.com",
+      "authorUrl": "www.payscale.com"
+    }
+  }
+}
