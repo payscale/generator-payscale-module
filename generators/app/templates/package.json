@@ -4,10 +4,10 @@
   "description": "<%- description %>",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha -R min -r babel-register -r ignore-styles --reporter progress ./testutils/dom.js src/tests/*.js",
+    "test": "<%- test %>",
     "lint": "eslint --config .eslintrc --format table src",
     "lint-fix": "eslint --fix --config .eslintrc --format table src",
-    "teamcity-test": "mocha -R min -r babel-register --reporter mocha-teamcity-reporter ./testutils/dom.js src/tests/*.js",
+    "teamcity-test": "<%- teamcitytest %>",
     "teamcity-lint": "eslint --config .eslintrc --format ./node_modules/eslint-teamcity/index.js src",
     "compile": "babel src -d lib/ --ignore '/tests/' && webpack",
     "prepublish": "npm run teamcity-lint && npm run teamcity-test && npm run compile"

@@ -101,11 +101,6 @@ module.exports = class extends ReactLib {
         );
 
         this.fs.copy(
-            this.templatePath("test.js"),
-            this.destinationPath("src/tests/test.js")
-        );
-
-        this.fs.copy(
             this.templatePath(".eslintrc"),
             this.destinationPath(".eslintrc")
         );
@@ -126,6 +121,23 @@ module.exports = class extends ReactLib {
             this.destinationPath("testutils/dom.js")
         );
 
+        if(this.props.test === "mocha + chai") {
+            this.fs.copy(
+                this.templatePath("test_mocha.js"),
+                this.destinationPath("src/tests/test.js")
+            );
+            var teamcitytest = "mocha -R min -r babel-register --reporter mocha-teamcity-reporter ./testutils/dom.js src/tests/*.js"
+            var test = "mocha -R min -r babel-register --reporter progress ./testutils/dom.js src/tests/*.js"
+        } else {
+            this.fs.copy(
+                this.templatePath("test_jest.js"),
+                this.destinationPath("src/tests/test.js")
+            );
+
+            var teamcitytest = "jest --testResultsProcessor jest-teamcity-reporter src/tests/*.js"
+            var test = "jest"
+        }
+
         this.fs.copyTpl(
             this.templatePath("package.json"),
             this.destinationPath("package.json"),
@@ -133,7 +145,9 @@ module.exports = class extends ReactLib {
                 name: this.props.name,
                 description: this.props.description,
                 author: this.props.author,
-                repo: this.props.repo
+                repo: this.props.repo,
+                teamcitytest: teamcitytest,
+                test: test
             }
         );
 
@@ -151,8 +165,8 @@ module.exports = class extends ReactLib {
                 this.destinationPath(".babelrc")
             );
 
-            this.npmInstall(['babel-preset-react@6.16.0', 'react-addons-test-utils@15.0.2', 'react-test-renderer@15.5.4', 'react-dom@15.4.2', 'enzyme@2.7.0'], { 'save-dev': true })
-            this.npmInstall(['prop-types@15.5.8', 'react@15.5.4'], { 'save': true });
+            this.npmInstall(['babel-preset-react@6.16.0', 'react-addons-test-utils@15.0.2', 'react-test-renderer@15.5.4', 'react-dom@15.4.2', 'enzyme@2.7.0'], { 'save-dev': true, 'save-exact': true })
+            this.npmInstall(['prop-types@15.5.8', 'react@15.5.4'], { 'save': true, 'save-exact': true });
         }
         else {
             this.fs.copy(
@@ -162,9 +176,9 @@ module.exports = class extends ReactLib {
         }
 
         if (this.props.test === "mocha + chai") {
-            this.npmInstall(["chai@3.5.0", "expect@1.20.2", "mocha@2.5.3", "mocha-teamcity-reporter@1.1.1", "sinon@1.17.7"], { 'save-dev': true });
+            this.npmInstall(["chai@3.5.0", "expect@1.20.2", "mocha@2.5.3", "mocha-teamcity-reporter@1.1.1", "sinon@1.17.7"], { 'save-dev': true, 'save-exact': true});
         } else {
-            this.npmInstall(['jest@19.0.2'], { 'save-dev': true });
+            this.npmInstall(['jest@19.0.2', 'babel-jest@19.0.0', 'jest-teamcity-reporter@0.6.2'], { 'save-dev': true, 'save-exact': true });
         }
     }
 
