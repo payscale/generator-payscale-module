@@ -1,19 +1,22 @@
-# generator-payscale-react-lib [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> Generator for React libraries by PayScale
+# generator-payscale-module [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+> Generator for JavaScript libraries by PayScale
+
+## About
+This Yeoman generator was created so you can easily get up and running with a JavaScript or React component. It creates the webpack.config, a package.json, the necessary dependencies, and tests in your choosing of Jest or Mocha/Chai. It includes hot reloading, ESLint, Babel, and teamcity scripts.
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-payscale-react-lib using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-payscale-module using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
-npm install -g generator-payscale-react-lib
+npm install -g generator-payscale-module
 ```
 
 Then generate your new project:
 
 ```bash
-yo payscale-react-lib
+yo payscale-module
 ```
 
 ## Getting To Know Yeoman
@@ -28,9 +31,9 @@ yo payscale-react-lib
 Apache-2.0 © [PayScale](www.payscale.com)
 
 
-[npm-image]: https://badge.fury.io/js/generator-payscale-react-lib.svg
-[npm-url]: https://npmjs.org/package/generator-payscale-react-lib
-[travis-image]: https://travis-ci.org/payscale/generator-payscale-react-lib.svg?branch=master
-[travis-url]: https://travis-ci.org/payscale/generator-payscale-react-lib
-[daviddm-image]: https://david-dm.org/payscale/generator-payscale-react-lib.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/payscale/generator-payscale-react-lib
+[npm-image]: https://badge.fury.io/js/generator-payscale-module.svg
+[npm-url]: https://npmjs.org/package/generator-payscale-module
+[travis-image]: https://travis-ci.org/payscale/generator-payscale-module.svg?branch=master
+[travis-url]: https://travis-ci.org/payscale/generator-payscale-module
+[daviddm-image]: https://david-dm.org/payscale/generator-payscale-module.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/payscale/generator-payscale-module
