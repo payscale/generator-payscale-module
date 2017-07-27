@@ -96,7 +96,7 @@ module.exports = class extends ReactLib {
         );
         this.fs.copy(
             this.templatePath(".gitignore"),
-            this.destinationPath("gitignore")
+            this.destinationPath(".gitignore")
         );
         this.fs.copy(
             this.templatePath(".npmignore"),
