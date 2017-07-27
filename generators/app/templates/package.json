@@ -2,7 +2,7 @@
   "name": "<%- name %>",
   "version": "0.0.1",
   "description": "<%- description %>",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js --inline --hot",
     "test": "<%- test %>",

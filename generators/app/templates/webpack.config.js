@@ -2,8 +2,8 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        '<%- name %>': __dirname + '/lib/index.js',
-        '<%- name %>.min': __dirname + '/lib/index.js'
+        '<%- name %>': __dirname + '/src/index.js',
+        '<%- name %>.min': __dirname + '/src/index.js'
     },
     output: {
         filename: '[name].js',
