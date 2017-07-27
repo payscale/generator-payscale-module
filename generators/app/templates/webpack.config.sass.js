@@ -35,7 +35,7 @@ module.exports = {
             },
             {
                 test: /\.s?css$/,
-                use: ExtractTextPlugin.extract({ use: ['sass-loader'] })
+                use: ExtractTextPlugin.extract({ use: ['css-loader', 'sass-loader'] })
             }
         ]
     }
