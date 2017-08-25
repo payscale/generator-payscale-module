@@ -1,9 +1,7 @@
 .git
 .gitignore
 yarn.lock
-docs/obj
-docs/bin
 node_modules
-docs/wwwroot
-docs
 testutils
+_teamcity
+src

@@ -1,14 +1,14 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        '<%- name %>': __dirname + '/src/index.js',
-        '<%- name %>.min': __dirname + '/src/index.js'
+        'test': [__dirname + '/test.js']
     },
     output: {
         filename: '[name].js',
         path: __dirname + '/dist',
-        publicPath: 'https://localhost:8080/dist/'
+        publicPath: 'http://localhost:8080/dist/'
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
@@ -20,16 +20,18 @@ module.exports = {
         })
     ],
     module: {
-        rules: [{
-            test: /\.js$/,
-            use: 'babel-loader',
-            exclude: ['/node_modules/', '/tests/']
-        }]
+        rules: [
+            {
+                test: /\.js$/,
+                use: 'babel-loader',
+                exclude: ['/node_modules/', '/tests/']
+            }
+        ]
     },
     devServer: {
         host: 'localhost',
         port: 8080,
-        https: true
+        https: false
     },
     devtool: 'inline-source-map'
 };

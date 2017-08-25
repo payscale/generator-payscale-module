@@ -1,8 +1,5 @@
 node_modules
 yarn.lock
-docs/wwwroot
-docs/bin
-docs/obj
 lib
 dist
 .DS_Store
