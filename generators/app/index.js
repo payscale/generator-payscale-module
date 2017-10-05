@@ -139,7 +139,6 @@ module.exports = class extends ReactLib {
         this.npmInstall(['gulp@3.9.1', 'gulp-babel@6.1.2'], { 'save-dev': true, 'save-exect': true});
 
         // copy babel config and install react and babel libraries
-        // copy webpack config files
         if (this.props.type === "React") {
             this.fs.copy(this.templatePath(".babelrc-react"), this.destinationPath(".babelrc"));
             this.fs.copy(this.templatePath("test.js"), this.destinationPath("test.js"));
@@ -147,25 +146,25 @@ module.exports = class extends ReactLib {
 
             this.npmInstall(['babel-preset-react@6.16.0', 'react-addons-test-utils@15.0.2', 'react-test-renderer@15.5.4', 'react-dom@15.6.1', 'enzyme@2.7.0'], { 'save-dev': true, 'save-exact': true })
             this.npmInstall(['prop-types@15.5.10', 'react@15.6.1'], { 'save': true, 'save-exact': true });
-
-            if(this.props.css === "css") {
-                this.fs.copyTpl(this.templatePath('webpack.config.css.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
-                this.fs.copyTpl(this.templatePath('webpack.config.dev.css.js'), this.destinationPath('webpack.config.dev.js'), { name: this.props.name });
-            }
-            else if(this.props.css === "sass") {
-                this.fs.copyTpl(this.templatePath('webpack.config.sass.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
-                this.fs.copyTpl(this.templatePath('webpack.config.dev.sass.js'), this.destinationPath('webpack.config.dev.js'), { name: this.props.name });
-            }
-            else {
-                this.fs.copyTpl(this.templatePath('webpack.config.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
-                this.fs.copyTpl(this.templatePath('webpack.config.dev.js'), this.destinationPath('webpack.config.dev.js'), { name: this.props.name });
-            }
         }
         else {
             this.fs.copy(this.templatePath(".babelrc"), this.destinationPath(".babelrc"));
+        }
+
+        // copy webconfigs based on css processor
+        if(this.props.css === "css") {
+            this.fs.copyTpl(this.templatePath('webpack.config.css.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
+            this.fs.copyTpl(this.templatePath('webpack.config.dev.css.js'), this.destinationPath('webpack.config.dev.js'), { name: this.props.name });
+        }
+        else if(this.props.css === "sass") {
+            this.fs.copyTpl(this.templatePath('webpack.config.sass.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
+            this.fs.copyTpl(this.templatePath('webpack.config.dev.sass.js'), this.destinationPath('webpack.config.dev.js'), { name: this.props.name });
+        }
+        else {
             this.fs.copyTpl(this.templatePath('webpack.config.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
             this.fs.copyTpl(this.templatePath('webpack.config.dev.js'), this.destinationPath('webpack.config.dev.js'), { name: this.props.name });
         }
+
 
         // install css libraries
         if(this.props.css === "css") {
