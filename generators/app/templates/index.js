@@ -1,3 +1,1 @@
-export default function something() {
-    return '';
-}
+export YourComponent from './components/YourComponent';
