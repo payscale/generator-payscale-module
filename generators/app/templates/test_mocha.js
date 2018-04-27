@@ -1,8 +1,8 @@
-import chai from 'chai';
-import something from '../index';
+// import chai from 'chai';
+// import something from '../index';
 
-describe('Dummy Test', () => {
-    it('exists', () => {
-        chai.expect(something).to.exist;
-    });
-});
+// describe('Dummy Test', () => {
+//     it('exists', () => {
+//         chai.expect(something).to.exist;
+//     });
+// });

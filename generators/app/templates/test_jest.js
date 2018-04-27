@@ -1,7 +1,7 @@
-import something from '../index';
+// import something from '../index';
 
-describe('Dummy Test', () => {
-    test('exists', () => {
-        expect(something).toBeDefined();
-    });
-});
+// describe('Dummy Test', () => {
+//     test('exists', () => {
+//         expect(something).toBeDefined();
+//     });
+// });

@@ -85,6 +85,9 @@ module.exports = class extends ReactLib {
     writing() {
         mkdirp(this.destinationPath("src"));
         mkdirp(this.destinationPath("src/tests"));
+        mkdirp(this.destinationPath("src/components"));
+        mkdirp(this.destinationPath("src/styles"));
+        
         this.fs.copy(
             this.templatePath("index.js"),
             this.destinationPath("src/index.js")
@@ -109,6 +112,10 @@ module.exports = class extends ReactLib {
         this.fs.copy(
             this.templatePath("testutils/dom.js"),
             this.destinationPath("testutils/dom.js")
+        );
+        this.fs.copy(
+            this.templatePath("yourComponent.js"),
+            this.destinationPath("src/components/yourComponent.js")
         );
 
         if(this.props.test === "mocha + chai") {
@@ -141,7 +148,14 @@ module.exports = class extends ReactLib {
         // copy babel config and install react and babel libraries
         if (this.props.type === "React") {
             this.fs.copy(this.templatePath(".babelrc-react"), this.destinationPath(".babelrc"));
-            this.fs.copy(this.templatePath("test.js"), this.destinationPath("test.js"));
+            
+            if (this.props.css === "sass") {
+                this.fs.copy(this.templatePath("test_scss.js"), this.destinationPath("test.js"));
+            } else if (this.props.css === "css") {
+                this.fs.copy(this.templatePath("test_css.js"), this.destinationPath("test.js"));
+            } else {
+                this.fs.copy(this.templatePath("test.js"), this.destinationPath("test.js"));
+            }
             this.fs.copy(this.templatePath("test.html"), this.destinationPath("test.html"));
 
             this.npmInstall(['babel-preset-react@6.16.0', 'react-addons-test-utils@15.0.2', 'react-test-renderer@15.5.4', 'react-dom@15.6.1', 'enzyme@2.7.0'], { 'save-dev': true, 'save-exact': true })
@@ -151,14 +165,24 @@ module.exports = class extends ReactLib {
             this.fs.copy(this.templatePath(".babelrc"), this.destinationPath(".babelrc"));
         }
 
-        // copy webconfigs based on css processor
+        // copy webconfigs and style templates based on css processor
         if(this.props.css === "css") {
             this.fs.copyTpl(this.templatePath('webpack.config.css.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
             this.fs.copyTpl(this.templatePath('webpack.config.dev.css.js'), this.destinationPath('webpack.config.dev.js'), { name: this.props.name });
+            
+            this.fs.copy(
+                this.templatePath("yourComponent.css"),
+                this.destinationPath("src/styles/yourComponent.css")
+            );
         }
         else if(this.props.css === "sass") {
             this.fs.copyTpl(this.templatePath('webpack.config.sass.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
             this.fs.copyTpl(this.templatePath('webpack.config.dev.sass.js'), this.destinationPath('webpack.config.dev.js'), { name: this.props.name });
+            
+            this.fs.copy(
+                this.templatePath("yourComponent.scss"),
+                this.destinationPath("src/styles/yourComponent.scss")
+            );
         }
         else {
             this.fs.copyTpl(this.templatePath('webpack.config.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
