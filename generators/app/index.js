@@ -117,6 +117,14 @@ module.exports = class extends ReactLib {
             this.templatePath("yourComponent.js"),
             this.destinationPath("src/components/yourComponent.js")
         );
+        this.fs.copy(
+            this.templatePath(".storybook"),
+            this.destinationPath(".storybook")
+        );
+        this.fs.copy(
+            this.templatePath("README.md"),
+            this.destinationPath("README.md")
+        );
 
         if(this.props.test === "mocha + chai") {
             this.fs.copy(this.templatePath("test_mocha.js"), this.destinationPath("src/tests/test.js"));
@@ -149,15 +157,6 @@ module.exports = class extends ReactLib {
         if (this.props.type === "React") {
             this.fs.copy(this.templatePath(".babelrc-react"), this.destinationPath(".babelrc"));
             
-            if (this.props.css === "sass") {
-                this.fs.copy(this.templatePath("test_scss.js"), this.destinationPath("test.js"));
-            } else if (this.props.css === "css") {
-                this.fs.copy(this.templatePath("test_css.js"), this.destinationPath("test.js"));
-            } else {
-                this.fs.copy(this.templatePath("test.js"), this.destinationPath("test.js"));
-            }
-            this.fs.copy(this.templatePath("test.html"), this.destinationPath("test.html"));
-
             this.npmInstall(['babel-preset-react@6.16.0', 'react-addons-test-utils@15.0.2', 'react-test-renderer@15.5.4', 'react-dom@15.6.1', 'enzyme@2.7.0'], { 'save-dev': true, 'save-exact': true })
             this.npmInstall(['prop-types@15.5.10', 'react@15.6.1'], { 'save': true, 'save-exact': true });
         }
@@ -187,6 +186,15 @@ module.exports = class extends ReactLib {
         else {
             this.fs.copyTpl(this.templatePath('webpack.config.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
             this.fs.copyTpl(this.templatePath('webpack.config.dev.js'), this.destinationPath('webpack.config.dev.js'), { name: this.props.name });
+        }
+
+        
+        // copy stories based on css processor
+        if(this.props.css === "css") {
+            this.fs.copyTpl(this.templatePath('stories/YourComponent.css.js'), this.destinationPath('stories/YourComponent.js'), { name: this.props.name });
+        }
+        else {
+            this.fs.copyTpl(this.templatePath('stories/YourComponent.scss.js'), this.destinationPath('stories/YourComponent.js'), { name: this.props.name });
         }
 
 
