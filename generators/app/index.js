@@ -118,8 +118,16 @@ module.exports = class extends ReactLib {
             this.destinationPath("src/components/yourComponent.js")
         );
         this.fs.copy(
-            this.templatePath(".storybook"),
-            this.destinationPath(".storybook")
+            this.templatePath(".storybook/addons.js"),
+            this.destinationPath(".storybook/addons.js")
+        );
+        this.fs.copy(
+            this.templatePath(".storybook/config.js"),
+            this.destinationPath(".storybook/config.js")
+        );
+        this.fs.copy(
+            this.templatePath(".storybook/preview-head.html"),
+            this.destinationPath(".storybook/preview-head.html")
         );
         this.fs.copy(
             this.templatePath("README.md"),
@@ -173,6 +181,11 @@ module.exports = class extends ReactLib {
                 this.templatePath("yourComponent.css"),
                 this.destinationPath("src/styles/yourComponent.css")
             );
+                
+            this.fs.copy(
+                this.templatePath(".storybook/webpack.config.css.js"),
+                this.destinationPath(".storybook/webpack.config.js")
+            );
         }
         else if(this.props.css === "sass") {
             this.fs.copyTpl(this.templatePath('webpack.config.sass.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
@@ -182,10 +195,19 @@ module.exports = class extends ReactLib {
                 this.templatePath("yourComponent.scss"),
                 this.destinationPath("src/styles/yourComponent.scss")
             );
+            this.fs.copy(
+                this.templatePath(".storybook/webpack.config.scss.js"),
+                this.destinationPath(".storybook/webpack.config.js")
+            );
         }
         else {
             this.fs.copyTpl(this.templatePath('webpack.config.js'), this.destinationPath('webpack.config.js'), { name: this.props.name });
             this.fs.copyTpl(this.templatePath('webpack.config.dev.js'), this.destinationPath('webpack.config.dev.js'), { name: this.props.name });
+            
+            this.fs.copy(
+                this.templatePath(".storybook/webpack.config.css.js"),
+                this.destinationPath(".storybook/webpack.config.js")
+            );
         }
 
         

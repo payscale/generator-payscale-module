@@ -2,37 +2,37 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class YourComponent extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            count: 0
-        };
-    }
+    this.state = {
+      count: 0
+    };
+  }
 
-    _handleOnClick = () => {
-        this.setState({
-            count: this.state.count + 1
-        });
-    }
+  _handleOnClick = () => {
+    this.setState({
+      count: this.state.count + 1
+    });
+  };
 
-    render() {
-        let { someProp } = this.props;
-        let { count } = this.state;
+  render() {
+    const { someProp } = this.props;
+    const { count } = this.state;
 
-        return (
-            <div className="someClass">
-               <span> {`${someProp} ${count} times`} </span>
-                <button onClick={this._handleOnClick}>Click me!</button>
-            </div>
-        );
-    }
+    return (
+      <div className="someClass">
+        <span> {`${someProp} ${count} times`} </span>
+        <button onClick={this._handleOnClick}>Click me!</button>
+      </div>
+    );
+  }
 }
 
 YourComponent.propTypes = {
-    someProp: PropTypes.string
+  someProp: PropTypes.string
 };
 
 YourComponent.defaultProps = {
-    someProp: 'You clicked the button'
+  someProp: 'You clicked the button'
 };
