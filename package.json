@@ -1,6 +1,6 @@
 {
   "name": "generator-payscale-module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Generator for javascript libraries by PayScale",
   "homepage": "",
   "author": {
@@ -20,26 +20,25 @@
     "node-module"
   ],
   "devDependencies": {
-    "yeoman-test": "^1.6.0",
-    "yeoman-assert": "^3.0.0",
-    "nsp": "^2.6.3",
-    "eslint": "^3.18.0",
-    "eslint-config-xo-space": "^0.16.0",
-    "jest": "^19.0.2",
-    "jest-cli": "^19.0.1"
+    "yeoman-test": "2.4.1",
+    "yeoman-assert": "3.1.1.",
+    "eslint": "6.8.0",
+    "eslint-config-xo-space": "0.24.0",
+    "jest": "25.2.7",
+    "jest-cli": "25.2.7"
   },
   "dependencies": {
-    "chalk": "^1.1.3",
-    "mkdirp": "^0.5.1",
-    "path": "^0.12.7",
-    "yeoman-generator": "^2.0.5",
-    "yosay": "^2.0.0"
+    "chalk": "4.0.0.",
+    "mkdirp": "1.0.4",
+    "path": "0.12.7",
+    "yeoman-generator": "4.7.2",
+    "yosay": "2.0.2"
   },
   "jest": {
     "testEnvironment": "node"
   },
   "scripts": {
-    "prepublish": "nsp check",
+    "prepublish": "yarn audit fix",
     "pretest": "eslint . --fix",
     "test": "jest"
   },
